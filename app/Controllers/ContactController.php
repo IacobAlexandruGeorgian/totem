@@ -83,7 +83,7 @@ class ContactController extends BaseController
         $contact = $contactModel->withDeleted()->find($id);
 
         $contact->fill($this->request->getPost());
-
+        
         if ($contact->hasChanged()) {
 
             $contactModel->save($contact);

@@ -1,5 +1,6 @@
 $(document).ready(function () {
   $('[id^="contactDeleteModal_"]').on('click', function (event) {
+    
     event.preventDefault();
 
     let contactId = $(this).attr('id').split('_')[1];
@@ -10,8 +11,8 @@ $(document).ready(function () {
       url: deleteUrl,
       type: 'DELETE',
       success: function (response) {
+
         $(`#contactDeleteModal_${contactId}`).modal('hide');
-        console.log(response);
         $(`#contactRow_${contactId} td:nth-child(8)`).text(response.date);
 
         toastr.success('Contact deleted successfully!', 'Success');
