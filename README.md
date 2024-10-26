@@ -79,6 +79,7 @@ Additionally, make sure that the following extensions are enabled in your PHP:
 
 ![image](https://github.com/user-attachments/assets/a2ff1459-18db-4d01-a16d-f695b5c0ca41)
 
+![image](https://github.com/user-attachments/assets/24a5b8ae-8a78-4627-87d2-b7d74df8829e)
 
 
 
