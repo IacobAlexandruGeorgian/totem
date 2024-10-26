@@ -9,6 +9,7 @@ use App\Models\ContactModel;
 use App\Models\PhoneModel;
 use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\I18n\Time;
+use CodeIgniter\Exceptions\PageNotFoundException;
 
 class ContactController extends BaseController
 {
@@ -83,6 +84,10 @@ class ContactController extends BaseController
     public function edit($id)
     {
         $contact = $this->contactModel->withDeleted()->find($id);
+
+        if (!$contact) {
+            throw PageNotFoundException::forPageNotFound("Contact with ID $id not found.");
+        }
 
         return view('contacts/edit', [
             'contact' => $contact
