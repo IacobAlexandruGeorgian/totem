@@ -24,12 +24,12 @@
 
 <div class="form-group">
     <label for="email">Email</label>
-    <input type="email" name="email" id="email" class="form-control" value="<?= esc($contact->email) ?>">
+    <input type="text" name="email" id="email" class="form-control" value="<?= esc($contact->email) ?>">
 </div>
 
 <div class="form-group">
     <label for="phone">Phone</label>
-    <input type="tel" name="phone" id="phone" class="form-control" value="<?= esc($contact->phone) ?>">
+    <input type="text" name="phone" id="phone" class="form-control" value="<?= esc($contact->phone) ?>">
 </div>
 
 <div class="d-flex justify-content-between mt-4">
