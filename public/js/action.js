@@ -1,9 +1,9 @@
 $(document).ready(function () {
-  $('[id^="contactDeleteModal_"]').on('click', function (event) {
+  $('[id^="contactDeleteModal_"]').on('click', (event) => {
 
     event.preventDefault();
 
-    let contactId = $(this).attr('id').split('_')[1];
+    let contactId = $(event.currentTarget).attr('id').split('_')[1];
 
     var deleteUrl = $(`#deleteUrl_${contactId}`).val();
 

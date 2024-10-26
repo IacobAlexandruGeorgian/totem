@@ -38,11 +38,19 @@ $(document).ready(function () {
             $('#email').addClass('is-invalid').after('<div class="invalid-feedback">Please enter a valid email address</div>');
         }
 
-        const phone = $('#phone').val().trim();
+        const phones = $('#phones').val();
         const phonePattern = /^[0-9]+$/;
-        if (!phonePattern.test(phone) || phone.length > 15) {
-            isValid = false;
-            $('#phone').addClass('is-invalid').after('<div class="invalid-feedback">Enter a valid phone number</div>');
+        if (phones && phones.length > 0) {
+            phones.forEach(phone => {
+                phone = phone.trim();
+                if (!phonePattern.test(phone) || phone.length > 15 || phone.length < 7) {
+                    isValid = false;
+                }
+            });
+
+            if (!isValid) {
+                $('#phones').addClass('is-invalid').after('<div class="invalid-feedback">Please enter valid phone numbers</div>');
+            }
         }
 
         if (isValid) {

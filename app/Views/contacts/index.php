@@ -68,13 +68,13 @@
                     <td><?= esc($contact->CNP) ?></td>
                     <td><?= esc($contact->birth_date) ?></td>
                     <td><?= esc($contact->email) ?></td>
-                    <td><?= esc($contact->phone) ?></td>
+                    <td><?= view('components/phoneModal', ['contact' => $contact]) ?></td>
                     <td><?= esc($contact->created_at) ?></td>
                     <td><?= esc($contact->updated_at) ?></td>
                     <td><?= esc($contact->deleted_at) ?></td>
                     <td>
                         <a href="<?= url_to('contact.edit', esc($contact->id)) ?>" class="btn btn-sm btn-primary">Edit</a>
-                        <?= view('components/modal', ['contact' => $contact]) ?>
+                        <?= view('components/deleteModal', ['contact' => $contact]) ?>
                     </td>
                 </tr>
 

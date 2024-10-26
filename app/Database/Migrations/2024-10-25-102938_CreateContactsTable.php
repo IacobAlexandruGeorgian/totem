@@ -39,11 +39,6 @@ class CreateContactsTable extends Migration
                 'constraint' => 30,
                 'null' => false
             ],
-            'phone' => [
-                'type' => 'VARCHAR',
-                'constraint' => 15,
-                'null' => true
-            ],
             'created_at' => [
                 'type' => 'DATETIME',
                 'null' => false

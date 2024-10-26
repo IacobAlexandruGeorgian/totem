@@ -1,4 +1,4 @@
-<button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#contactDeleteModal_<?= esc($contact->id) ?>">Delete</button>
+<button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#contactDeleteModal_<?= esc($contact->id) ?>" <?= $contact->deleted_at ? 'disabled' : '' ?>>Delete</button>
 
 <div class="modal fade" id="contactDeleteModal_<?= esc($contact->id) ?>" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">

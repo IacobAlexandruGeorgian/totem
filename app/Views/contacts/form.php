@@ -28,8 +28,14 @@
 </div>
 
 <div class="form-group">
-    <label for="phone">Phone</label>
-    <input type="text" name="phone" id="phone" class="form-control" value="<?= esc($contact->phone) ?>">
+    <label for="phones">Phones</label>
+    <select name="phones[]" id="phones" class="form-control select2" multiple="multiple" placeholder="Add phone numbers">
+        <?php if (!empty($contact->getPhones())) : ?>
+            <?php foreach ($contact->getPhones() as $phone) : ?>
+                <option value="<?= esc($phone->phone_number) ?>" selected><?= esc($phone->phone_number) ?></option>
+            <?php endforeach; ?>
+        <?php endif; ?>
+    </select>
 </div>
 
 <div class="d-flex justify-content-between mt-4">

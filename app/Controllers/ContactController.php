@@ -4,7 +4,9 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Entities\Contact;
+use App\Entities\Phone;
 use App\Models\ContactModel;
+use App\Models\PhoneModel;
 use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\I18n\Time;
 
@@ -12,11 +14,16 @@ class ContactController extends BaseController
 {
     private $contactModel;
     private $contactEntity;
+    private $phoneModel;
+    private $phoneEntity;
 
     public function __construct()
     {
         $this->contactModel = new ContactModel();
+        $this->phoneModel = new PhoneModel();
+
         $this->contactEntity = new Contact();
+        $this->phoneEntity = new Phone();
     }
 
     public function index()
@@ -31,8 +38,7 @@ class ContactController extends BaseController
             $this->contactModel->like('name', $filter)
                 ->orLike('cnp', $filter)
                 ->orLike('birth_date', $filter)
-                ->orLike('email', $filter)
-                ->orLike('phone', $filter);
+                ->orLike('email', $filter);
         }
 
         $this->contactModel->orderBy($sort, $order);
@@ -62,7 +68,16 @@ class ContactController extends BaseController
 
         $contact = new Contact($data);
 
-        $this->contactModel->insert($contact);
+        $contactId = $this->contactModel->insert($contact, true);
+
+        foreach ($data['phones'] as $phoneNumber) {
+            $phone = new Phone([
+                'contact_id' => $contactId,
+                'phone_number' => $phoneNumber
+            ]);
+
+            $this->phoneModel->insert($phone);
+        }
 
         return redirect()->to('')->with('success', 'Contact created successfully.');
     }
@@ -78,26 +93,39 @@ class ContactController extends BaseController
 
     public function update($id)
     {
-        $contactModel = new ContactModel();
-        
-        $contact = $contactModel->withDeleted()->find($id);
+        $data = $this->request->getPost();
 
-        $contact->fill($this->request->getPost());
-        
-        if ($contact->hasChanged()) {
+        $this->contactModel->update($id, $data);
 
-            $contactModel->save($contact);
+        $this->phoneModel->where('contact_id', $id)
+            ->whereNotIn('phone_number', $data['phones'])
+            ->delete();
 
-            return redirect()->to('')->with('success', 'Contact updated successfully.');
+        foreach ($data['phones'] as $phoneNumber) {
+
+            $existRecord = $this->phoneModel->where('contact_id', $id)
+                ->where('phone_number', $phoneNumber)
+                ->countAllResults();
+
+            if ($existRecord === 0) {
+
+                $phone = new Phone([
+                    'contact_id' => $id,
+                    'phone_number' => $phoneNumber
+                ]);
+
+                $this->phoneModel->insert($phone);
+            }
         }
 
-        return redirect()->to('')->with('warning', 'The contact wasn\'t updated.');
+        return redirect()->to('')->with('success', 'Contact updated successfully.');
     }
 
     public function delete($id)
     {
         $this->contactModel->delete($id);
-
+        $this->phoneModel->where('contact_id', $id)->delete();
+        
         return $this->response->setJSON([
             'id' => $id,
             'date' => Time::now()->toDateTimeString()
