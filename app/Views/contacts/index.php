@@ -38,11 +38,7 @@
                         Email <?= $sort === 'email' ? ($order === 'asc' ? '▲' : '▼') : '' ?>
                     </a>
                 </th>
-                <th scope="col">
-                    <a href="<?= site_url('') ?>?sort=phone&order=<?= $sort === 'phone' && $order === 'asc' ? 'desc' : 'asc' ?>&filter=<?= esc($filter) ?>">
-                        Phone <?= $sort === 'phone' ? ($order === 'asc' ? '▲' : '▼') : '' ?>
-                    </a>
-                </th>
+                <th scope="col">Phone</th>
                 <th scope="col">
                     <a href="<?= site_url('') ?>?sort=created_at&order=<?= $sort === 'created_at' && $order === 'asc' ? 'desc' : 'asc' ?>&filter=<?= esc($filter) ?>">
                         Created at <?= $sort === 'created_at' ? ($order === 'asc' ? '▲' : '▼') : '' ?>

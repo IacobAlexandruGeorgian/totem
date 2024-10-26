@@ -15,7 +15,6 @@ class ContactController extends BaseController
     private $contactModel;
     private $contactEntity;
     private $phoneModel;
-    private $phoneEntity;
 
     public function __construct()
     {
@@ -23,7 +22,6 @@ class ContactController extends BaseController
         $this->phoneModel = new PhoneModel();
 
         $this->contactEntity = new Contact();
-        $this->phoneEntity = new Phone();
     }
 
     public function index()
@@ -125,7 +123,7 @@ class ContactController extends BaseController
     {
         $this->contactModel->delete($id);
         $this->phoneModel->where('contact_id', $id)->delete();
-        
+
         return $this->response->setJSON([
             'id' => $id,
             'date' => Time::now()->toDateTimeString()
