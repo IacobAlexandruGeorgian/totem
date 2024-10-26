@@ -69,7 +69,7 @@ class ContactController extends BaseController
 
     public function edit($id)
     {
-        $contact = $this->contactModel->find($id);
+        $contact = $this->contactModel->withDeleted()->find($id);
 
         return view('contacts/edit', [
             'contact' => $contact
@@ -80,11 +80,11 @@ class ContactController extends BaseController
     {
         $contactModel = new ContactModel();
         
-        $contact = $contactModel->find($id);
+        $contact = $contactModel->withDeleted()->find($id);
 
         $contact->fill($this->request->getPost());
 
-        if (!$contact->hasChanged()) {
+        if ($contact->hasChanged()) {
 
             $contactModel->save($contact);
 
