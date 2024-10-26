@@ -40,15 +40,17 @@ $(document).ready(function () {
 
         const phones = $('#phones').val();
         const phonePattern = /^[0-9]+$/;
+        let errorPhone = false;
         if (phones && phones.length > 0) {
             phones.forEach(phone => {
                 phone = phone.trim();
                 if (!phonePattern.test(phone) || phone.length > 15 || phone.length < 7) {
                     isValid = false;
+                    errorPhone = true;
                 }
             });
 
-            if (!isValid) {
+            if (errorPhone) {
                 $('#phones').addClass('is-invalid').after('<div class="invalid-feedback">Please enter valid phone numbers</div>');
             }
         }
