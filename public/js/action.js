@@ -1,6 +1,6 @@
 $(document).ready(function () {
   $('[id^="contactDeleteModal_"]').on('click', function (event) {
-    
+
     event.preventDefault();
 
     let contactId = $(this).attr('id').split('_')[1];
@@ -18,8 +18,11 @@ $(document).ready(function () {
         toastr.success('Contact deleted successfully!', 'Success');
       },
       error: function (xhr, status, error) {
+
         toastr.error("The contact wasn't deleted", 'Error');
+        
       },
+
     });
 
   });
