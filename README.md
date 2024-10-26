@@ -69,11 +69,18 @@ Additionally, make sure that the following extensions are enabled in your PHP:
   
 ## pictures with the project
 
-![image](https://github.com/user-attachments/assets/5ea2b4bd-d50a-4a67-9084-ecac68ac0afb)
+![image](https://github.com/user-attachments/assets/c9b374a1-01e0-45f6-99c7-45d7f584a69e)
 
-![image](https://github.com/user-attachments/assets/3d990838-1ea2-4f5d-bf4c-0c1b78fac657)
+![image](https://github.com/user-attachments/assets/d93606c8-7318-422a-b77c-22ba6376d198)
 
-![image](https://github.com/user-attachments/assets/84266a56-5994-4eb4-a28b-eef2456a48cc)
+![image](https://github.com/user-attachments/assets/4a2fe280-3800-4d44-9564-8f8b8eaa5afd)
 
-![image](https://github.com/user-attachments/assets/38bdb346-2a63-4893-887a-3c6d06ca1c59)
+![image](https://github.com/user-attachments/assets/b25232d4-0815-421f-b4b5-65b5960a23f8)
+
+![image](https://github.com/user-attachments/assets/a2ff1459-18db-4d01-a16d-f695b5c0ca41)
+
+
+
+
+
 
