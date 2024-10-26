@@ -21,7 +21,7 @@ class Contact extends Entity
         }
 
         $phoneModel = new PhoneModel();
-        $this->phones = $phoneModel->where('contact_id', $this->attributes['id'])->withDeleted()->findAll();
+        $this->phones = $phoneModel->where('contact_id', $this->attributes['id'])->findAll();
 
         return $this->phones;
     }
